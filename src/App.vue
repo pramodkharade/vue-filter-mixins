@@ -7,24 +7,23 @@
         <input v-model="filterText">
         <ul>
           <li v-for="fruit in filterFruits"> {{fruit}}</li>
-
         </ul>
       </div>
-      <hr>
-      <app-list></app-list>
-    </div>
 
+    </div>
+<hr>
+      <app-list></app-list>
     </div>
 </template>
 
 <script>
 import List from './List.vue';
+import { fruitsMixin} from './fruitMixin.js';
 export default {
   data (){
     return {
       text: ' This filter and Mixins',
-      fruits:['Apple','Banna','custruardApple','Chilly'],
-      filterText:''
+
     };
   },
   filters:{
@@ -32,13 +31,7 @@ export default {
       return value.toUpperCase();
     }
   },
-  computed:{
-      filterFruits(){
-        return this.fruits.filter((element)=>{
-          return element.match(this.filterText);
-        });
-      }
-  },
+  mixins:[fruitsMixin],
   components:{
     appList: List
   }
